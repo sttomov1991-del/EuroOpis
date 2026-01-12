@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опис в Евро | Euro Breakdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Опис в Евро</h1>
+            <p>Пресметнете вашата сума лесно и бързо</p>
+        </header>
+
+        <main class="calculator-grid">
+            <!-- Banknotes Column -->
+            <section class="denomination-column">
+                <div class="column-header">
+                    <h2>Банкноти & Големи Монети</h2>
+                </div>
+                <div class="denomination-list" id="banknotes-list">
+
+                    <div class="row" data-value="200">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">200 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="100">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">100 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="50">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">50 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="20">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">20 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="10">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">10 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="5">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">5 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="2">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">2 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="1">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">1 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coins Column -->
+            <section class="denomination-column">
+                <div class="column-header">
+                    <h2>Малки Монети (Центове)</h2>
+                </div>
+                <div class="denomination-list" id="coins-list">
+
+                    <div class="row" data-value="0.50">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.50 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="0.20">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.20 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="0.10">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.10 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="0.05">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.05 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="0.02">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.02 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                    <div class="row" data-value="0.01">
+                        <input type="number" min="0" placeholder="0" class="count-input">
+                        <span class="multiply-sign">x</span>
+                        <span class="label">0.01 €</span>
+                        <span class="equals-sign">=</span>
+                        <span class="row-total">0.00 €</span>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <footer class="total-footer">
+            <div class="subtotal-container">
+                <label for="coins-total-input" class="subtotal-label">Общо монети (центове):</label>
+                <input type="text" inputmode="decimal" id="coins-total-input" class="subtotal-input" placeholder="0.00">
+                <span class="subtotal-suffix">€</span>
+            </div>
+            <div class="total-container">
+                <span class="total-label">ОБЩА СУМА:</span>
+                <span id="grand-total" class="total-amount">0.00 €</span>
+            </div>
+
+            <!-- DFO Reconciliation Section -->
+            <div class="reconciliation-section">
+                <div class="dfo-container">
+                    <label for="dfo-input" class="dfo-label">Сума по ДФО:</label>
+                    <input type="text" inputmode="decimal" id="dfo-input" class="dfo-input" placeholder="0.00">
+                    <span class="currency-suffix">€</span>
+                </div>
+
+                <div id="difference-container" class="difference-container hidden">
+                    <span class="diff-label">Разлика:</span>
+                    <span id="difference-amount" class="diff-amount">0.00 €</span>
+                </div>
+            </div>
+
+            <button id="reset-btn" class="reset-button">Изчисти</button>
+        </footer>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

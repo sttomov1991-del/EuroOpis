@@ -1,0 +1,353 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .calculator-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+.column-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--primary-color);
+}
+
+.row {
+    display: grid;
+    /* Changed grid for Input x Label = Total */
+    grid-template-columns: 100px 20px 80px 20px 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+        /* Smaller body padding */
+    }
+
+    .app-container {
+        padding: 1.5rem 1rem;
+        /* Smaller container padding */
+    }
+
+    .row {
+        /* Adjusted for smaller screens */
+        grid-template-columns: 80px 10px 50px 10px 1fr;
+        font-size: 0.95rem;
+        /* readable font size */
+        gap: 0.25rem;
+        margin-bottom: 1.25rem;
+        /* More vertical space between rows */
+    }
+
+    .count-input {
+        padding: 0.75rem;
+        /* Larger touch target */
+        font-size: 1.1rem;
+        /* Readable number */
+    }
+}
+
+.label {
+    font-weight: 600;
+    text-align: left;
+    /* Changed alignment */
+}
+
+.multiply-sign,
+.equals-sign {
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: 500;
+}
+
+.count-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.count-input::-webkit-outer-spin-button,
+.count-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.count-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.row-total {
+    text-align: right;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Footer & Grand Total */
+.total-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Subtotal (Coins) */
+.subtotal-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+}
+
+.subtotal-label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.subtotal-amount {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.25rem;
+}
+
+.subtotal-input {
+    border: none;
+    background: transparent;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    width: 120px;
+    text-align: right;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.subtotal-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.subtotal-suffix {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    margin-left: 0.25rem;
+}
+
+.total-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #f1f5f9;
+    padding: 1.5rem 3rem;
+    border-radius: var(--radius);
+}
+
+.total-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.total-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.reset-button {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.reset-button:hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+    border-color: #fee2e2;
+}
+
+/* Reconciliation Section */
+.reconciliation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.dfo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.dfo-label {
+    font-weight: 600;
+    color: var(--text-muted);
+    flex-grow: 1;
+}
+
+.dfo-input {
+    border: none;
+    background: transparent;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    width: 120px;
+    text-align: right;
+}
+
+.dfo-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.currency-suffix {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.difference-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: center;
+    background-color: #f8fafc;
+    border: 1px dashed var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.difference-container.hidden {
+    display: none;
+}
+
+.diff-label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.diff-amount {
+    font-weight: 800;
+    font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Status Colors */
+.diff-positive {
+    color: var(--success-color);
+    /* Green */
+    background-color: #ecfdf5;
+    border-color: var(--success-color);
+    border-style: solid;
+}
+
+.diff-negative {
+    color: #ef4444;
+    /* Red */
+    background-color: #fef2f2;
+    border-color: #ef4444;
+    border-style: solid;
+}
+
+.diff-neutral {
+    color: var(--text-muted);
+    background-color: #f1f5f9;
+}
