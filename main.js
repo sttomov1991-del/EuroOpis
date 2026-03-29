@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const coinsTotalInput = document.getElementById('coins-total-input');
     const dfoInput = document.getElementById('dfo-input');
     const resetBtn = document.getElementById('reset-btn');
+    const autoDistributeBtn = document.getElementById('auto-distribute-btn');
+    const coinsHeader = document.getElementById('coins-header');
+    const coinsList = document.getElementById('coins-list');
+    const coinsToggleIcon = document.getElementById('coins-toggle-icon');
 
     // Formatter
     const formatCurrency = (amount) => {
@@ -154,6 +158,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateCalculations('row');
     });
+
+    // 5. Auto Distribute Button
+    if (autoDistributeBtn) {
+        autoDistributeBtn.addEventListener('click', () => {
+            if (!dfoInput || dfoInput.value === '') return;
+            const dfoValue = parseAmount(dfoInput.value);
+            if (dfoValue <= 0) return;
+
+            let dfoInteger = Math.floor(dfoValue);
+            let decimalPart = dfoValue - dfoInteger;
+            
+            // 1. Move a random amount from integer part to the coins total 
+            let maxExtraCoins = Math.min(30, dfoInteger);
+            let extraCoinsInteger = Math.floor(Math.random() * (maxExtraCoins + 1));
+            
+            let targetBanknotes = dfoInteger - extraCoinsInteger;
+            let finalCoinsTotal = extraCoinsInteger + decimalPart;
+            finalCoinsTotal = Math.round(finalCoinsTotal * 100) / 100;
+
+            const denoms = [200, 100, 50, 20, 10, 5, 2, 1];
+            const resultCounts = { 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0 };
+            
+            let remaining = targetBanknotes;
+            
+            // Pre-fill greedy for very large amounts to avoid long loops
+            if (remaining > 5000) {
+                let greedyAmount = remaining - 5000;
+                let pick200 = Math.floor(greedyAmount / 200);
+                resultCounts[200] += pick200;
+                remaining -= pick200 * 200;
+            }
+
+            let loops = 0;
+            while (remaining > 0 && loops < 20000) {
+                loops++;
+                let pool = [];
+                denoms.forEach(d => {
+                    if (d <= remaining) {
+                        if (d === 200) {
+                            if (dfoValue > 500 && Math.random() < 0.05) pool.push(d);
+                        } else if (d === 100) {
+                            if (dfoValue > 500 && Math.random() < 0.1) pool.push(d);
+                        } else if (d === 50) {
+                            pool.push(d, d);
+                        } else if (d === 20) {
+                            pool.push(d, d, d);
+                        } else if (d === 10) {
+                            pool.push(d, d);
+                        } else {
+                            pool.push(d);
+                        }
+                    }
+                });
+                
+                let pick = pool[Math.floor(Math.random() * pool.length)];
+                resultCounts[pick]++;
+                remaining -= pick;
+            }
+
+            // Reset all inputs first
+            rows.forEach(row => {
+                row.querySelector('.count-input').value = '';
+            });
+
+            // Set the active counts
+            denoms.forEach(denom => {
+                if (resultCounts[denom] > 0) {
+                    const row = document.querySelector(`.row[data-value="${denom}"]`);
+                    if (row) {
+                        row.querySelector('.count-input').value = resultCounts[denom];
+                    }
+                }
+            });
+
+            if (coinsTotalInput) {
+                coinsTotalInput.value = formatInputValue(finalCoinsTotal);
+            }
+
+            updateCalculations('manual');
+        });
+    }
+
+    // 6. Coins Header Toggle
+    if (coinsHeader && coinsList && coinsToggleIcon) {
+        coinsHeader.addEventListener('click', () => {
+            if (coinsList.style.display === 'none') {
+                coinsList.style.display = 'block';
+                coinsToggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                coinsList.style.display = 'none';
+                coinsToggleIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
 
     // Initial Run
     updateCalculations('row');
